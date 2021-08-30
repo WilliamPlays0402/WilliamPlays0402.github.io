@@ -1,0 +1,103 @@
+@keyframes h1_animation {
+  
+  0% {
+    font-family: calibri light;
+    font-size: 60px;
+    font-weight: bold;
+    color: rgb(255, 170, 255);
+    background-color: rgba(149, 185, 255, 0.3);
+    
+    
+  }
+  50% {
+    font-family: calibri light;
+    font-size: 60px;
+    color: rgb(149, 185, 255);
+    background-color: rgba(255, 17, 255, 0.3);
+    
+  }
+  100% {
+    font-family: calibri light;
+    font-size: 60px;
+    font-weight: bold;
+    color: rgb(255, 17, 255);
+    background-color: rgba(149, 185, 255, 0.3);
+  }
+  
+}
+
+
+.error {
+  color: red;
+  
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+.success {
+  color: lime;
+  
+  text-decoration: underline;
+  text-decoration-color: lime;
+}
+
+.h1 {
+  animation-name: h1_animation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 30px;
+  text-align: center;
+}
+
+
+.divclick:active {
+  animation-name: click;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+    
+}
+
+.button_link {
+  background-color: #778888;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 25px;
+  user-select: none;
+  -webkit-user-select: none;
+  position: fixed;
+
+  
+}
+
+.button_link:hover {
+  background-color: #aaffff;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 30px;
+  user-select: none;
+  -webkit-user-select: none;
+  position: fixed;
+  
+}
+
+body {
+  background-color: #225555;
+  text-align: center;
+}
+
+p {
+  color: white;
+  user-select: none;
+  font-family: calibri;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
