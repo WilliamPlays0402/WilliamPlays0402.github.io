@@ -27,16 +27,19 @@
 }
 
 
-.error {
+error {
   color: red;
-  
-  text-decoration: underline;
+  font-family: calibri;
+  font-size: 30px;
+  font-weight: bold;
   text-decoration-color: red;
 }
 
-.success {
+success {
   color: lime;
-  
+  font-family: calibri;
+  font-size: 30px;
+  font-weight: bold;
   text-decoration: underline;
   text-decoration-color: lime;
 }
@@ -63,29 +66,22 @@
     
 }
 
-.button_link {
-  background-color: #778888;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.button {
+  background-color: darkcyan;
+  color: limegreen;
+  font-family: calibri;
+  font-size: 30px;
+  font-weight: bold;
   text-align: center;
-  font-size: 25px;
-  user-select: none;
-  -webkit-user-select: none;
-  position: fixed;
-
-  
 }
 
-.button_link:hover {
-  background-color: #aaffff;
-  color: black;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
+.button:hover {
+  background-color: gray;
+  color: dark;
+  font-family: calibri;
   font-size: 30px;
-  user-select: none;
-  -webkit-user-select: none;
-  position: fixed;
-  
+  font-weight: bold;
+  text-align: center;
 }
 
 body {
@@ -95,7 +91,13 @@ body {
 
 p {
   color: white;
-  user-select: none;
+  font-family: calibri;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+a {
+  color: limegreen;
   font-family: calibri;
   font-size: 30px;
   font-weight: bold;
