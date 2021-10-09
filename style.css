@@ -1,5 +1,5 @@
-@keyframes h1_animation {
-  
+/*@keyframes h1_animation {
+   
   0% {
     font-family: calibri light;
     font-size: 60px;
@@ -25,16 +25,18 @@
   }
   
 }
+ */
 
-
-error {
-  color: red;
+.error {
+  background-color: rgb(146, 34, 81);
+  color: rgb(0, 0, 0);
   font-family: calibri;
   font-size: 30px;
   font-weight: bold;
-  text-decoration-color: red;
+  text-align: center;
+  border-radius: 10px;
 }
-
+/* 
 success {
   color: lime;
   font-family: calibri;
@@ -42,64 +44,46 @@ success {
   font-weight: bold;
   text-decoration: underline;
   text-decoration-color: lime;
-}
+} */
 
 .h1 {
-  animation-name: h1_animation;
+  /* animation-name: h1_animation;
   animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  animation-timing-function: linear;
+  animation-timing-function: linear; */
+  font-family: calibri light;
+  font-size: 60px;
+  font-weight: bold;
+  background-color: rgba(149, 185, 255, 0.3);
+  color: rgb(255, 17, 255);
   user-select: none;
   -webkit-user-select: none;
   padding: 30px;
   text-align: center;
 }
 
-
-.divclick:active {
-  animation-name: click;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-    
-}
-
 .button {
-  background-color: darkcyan;
-  color: limegreen;
+  background-color: rgb(92, 34, 146);
+  color: rgb(159, 155, 214);
   font-family: calibri;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+  border-radius: 10px;
 }
 
 .button:hover {
-  background-color: gray;
-  color: dark;
+  background-color: rgb(92, 34, 146);
+  color: rgb(186, 182, 238);
   font-family: calibri;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+  border-radius: 10px;
 }
 
 body {
-  background-color: #225555;
-  text-align: center;
-}
-
-p {
-  color: white;
-  font-family: calibri;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-}
-a {
-  color: limegreen;
-  font-family: calibri;
-  font-size: 30px;
-  font-weight: bold;
+  background-color: #291149;
   text-align: center;
 }
