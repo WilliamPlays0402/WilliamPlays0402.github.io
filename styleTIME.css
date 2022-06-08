@@ -1,8 +1,21 @@
 h1 {
-
+    color: #ffffff;
+    text-align: center;
 }
 
 :root {
     background-color: #212121;
+    font-family: Calibri;
 }
 
+.time {
+    color: #ffffff;
+    text-align: center;
+}
+
+.container {
+    width: 40%;
+    margin: auto;
+    background-color: #313541;
+    padding: 30px;
+}
