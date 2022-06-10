@@ -5,28 +5,30 @@ var r3 = Math.random()*255;
 var x = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_school - now;
-    r1 = r1+((Math.random()*10) - 5);
-    r2 = r2+((Math.random()*10) - 5);
-    r3 = r3+((Math.random()*10) - 5);
-    if (r1 <= 0) {
-        r1 = 0;
-    };
-    if (r2 <= 0) {
-        r2 = 0;
-    };
-    if (r3 <= 0) {
-        r3 = 0;
-    };
-    if (r1 >= 127) {
-        r1 = 127;
-    };
-    if (r2 >= 127) {
-        r2 = 127;
-    };
-    if (r3 >= 127) {
-        r3 = 127;
-    };
-    document.body.style.background = `rgb(${r1},${r2},${r3})`;
+    if (stop) {
+        r1 = r1+((Math.random()*10) - 5);
+        r2 = r2+((Math.random()*10) - 5);
+        r3 = r3+((Math.random()*10) - 5);
+        if (r1 <= 0) {
+            r1 = 0;
+        };
+        if (r2 <= 0) {
+            r2 = 0;
+        };
+        if (r3 <= 0) {
+            r3 = 0;
+        };
+        if (r1 >= 127) {
+            r1 = 127;
+        };
+        if (r2 >= 127) {
+            r2 = 127;
+        };
+        if (r3 >= 127) {
+            r3 = 127;
+        };
+        document.body.style.background = `rgb(${r1},${r2},${r3})`;
+    }
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -79,6 +81,14 @@ var x = setInterval(() => {
     };
 }, 1);
 
-// document.getElementById('button').onclick(() => {
-//     console.log('hi');
-// });
+var stop = true;
+
+function stop_it() {
+    if (stop === false) {
+        stop = true;
+        document.getElementById('button').innerHTML = 'Stop';
+    } else if (stop === true) {
+        stop = false;
+        document.getElementById('button').innerHTML = 'Start';
+    }
+}
