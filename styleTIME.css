@@ -19,3 +19,17 @@ h1 {
     background-color: #313541;
     padding: 30px;
 }
+
+button {
+    background-color: #313541;
+    border-radius: 5px;
+    padding: 20px, 10px;
+    color: white;
+    border-color: white;
+    border-style: solid;
+}
+
+button:active {
+    background-color: #00ffaa;
+    border-color: #00ffaa;
+}
