@@ -5,30 +5,6 @@ var r3 = Math.random()*255;
 var x = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_school - now;
-    if (stop) {
-        r1 = r1+((Math.random()*10) - 5);
-        r2 = r2+((Math.random()*10) - 5);
-        r3 = r3+((Math.random()*10) - 5);
-        if (r1 <= 0) {
-            r1 = 0;
-        };
-        if (r2 <= 0) {
-            r2 = 0;
-        };
-        if (r3 <= 0) {
-            r3 = 0;
-        };
-        if (r1 >= 127) {
-            r1 = 127;
-        };
-        if (r2 >= 127) {
-            r2 = 127;
-        };
-        if (r3 >= 127) {
-            r3 = 127;
-        };
-        document.body.style.background = `rgb(${r1},${r2},${r3})`;
-    }
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -80,6 +56,37 @@ var x = setInterval(() => {
         document.getElementById("time_activity").innerHTML = "EXPIRED";
     };
 }, 1);
+
+
+function changeColor() {
+    if (stop) {
+        r1 = r1+((Math.random()*20) - 10);
+        r2 = r2+((Math.random()*20) - 10);
+        r3 = r3+((Math.random()*20) - 10);
+        if (r1 <= 0) {
+            r1 = 0;
+        };
+        if (r2 <= 0) {
+            r2 = 0;
+        };
+        if (r3 <= 0) {
+            r3 = 0;
+        };
+        if (r1 >= 127) {
+            r1 = 127;
+        };
+        if (r2 >= 127) {
+            r2 = 127;
+        };
+        if (r3 >= 127) {
+            r3 = 127;
+        };
+        document.body.style.background = `rgb(${r1},${r2},${r3})`;
+        
+    }
+}
+
+setInterval(changeColor, 15);
 
 var stop = true;
 
