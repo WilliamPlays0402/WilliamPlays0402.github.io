@@ -11,6 +11,7 @@ h1 {
 .time {
     color: #ffffff;
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .container {
