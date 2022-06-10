@@ -12,13 +12,20 @@ var x = setInterval(() => {
     var milliseconds = Math.floor((distance % 1000));
     if (milliseconds <= 9) {
         milliseconds = "00" + milliseconds;
-    };
-    if (milliseconds <= 99) {
+    } else if (milliseconds <= 99) {
         milliseconds = "0" + milliseconds;
+    } else if (milliseconds == 1000) {
+        milliseconds = 999;
     };
-    if (milliseconds == 1000) {
-        milliseconds = 999
+    if (seconds <= 9) {
+        seconds = "0" + seconds;
     };
+    if (minutes <= 9) {
+        minutes = "0" + minutes;
+    };
+    if (hours <= 9) {
+        hours = "0" + hours;
+    }
     // if (milliseconds <= 999) {
     //     milliseconds = "0" + milliseconds
     // }
@@ -40,13 +47,20 @@ var x = setInterval(() => {
     var milliseconds = Math.floor((distance % 1000));
     if (milliseconds <= 9) {
         milliseconds = "00" + milliseconds;
-    };
-    if (milliseconds <= 99) {
+    } else if (milliseconds <= 99) {
         milliseconds = "0" + milliseconds;
-    };
-    if (milliseconds == 1000) {
+    } else if (milliseconds == 1000) {
         milliseconds = 999;
     };
+    if (seconds <= 9) {
+        seconds = "0" + seconds;
+    }
+    if (minutes <= 9) {
+        minutes = "0" + minutes;
+    };
+    if (hours <= 9) {
+        hours = "0" + hours;
+    }
     // if (milliseconds <= 999) {
     //     milliseconds = "0" + milliseconds
     // }
