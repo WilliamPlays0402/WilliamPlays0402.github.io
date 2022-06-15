@@ -37,11 +37,31 @@ button:active {
 
 
 body {
-    height: 100vh;
+    /* set the height of the element to the height of the entire webpage */
+    height: 170%;
     width: 100vw;
     margin: 0;
-    font-size: 42pt;
+    font-size: 36pt;
     position: absolute;
     top: 0;
     left: 0;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+    background: #212121;
+}
+
+::-webkit-scrollbar-track {
+    background: #313541;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ffaa;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-corner {
+    background: #313541;
 }
