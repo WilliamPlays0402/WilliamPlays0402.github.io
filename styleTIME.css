@@ -50,8 +50,8 @@ button:active {
 
 body {
     /* set the height of the element to the height of the entire webpage */
-    height: 170%;
-    width: 100vw;
+    height: 100;
+    width: 100;
     margin: 0;
     font-size: 36pt;
     position: absolute;
