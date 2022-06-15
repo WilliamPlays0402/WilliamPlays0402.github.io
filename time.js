@@ -1,7 +1,36 @@
+var x = setInterval(() => {
+    var now = new Date().getTime();
+    var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((now % (1000 * 60)) / 1000);
+    var milliseconds = Math.floor((now % 1000));
+    if (milliseconds <= 9) {
+        milliseconds = "00" + milliseconds;
+    } else if (milliseconds <= 99) {
+        milliseconds = "0" + milliseconds;
+    } else if (milliseconds == 1000) {
+        milliseconds = 999;
+    };
+    if (seconds <= 9) {
+        seconds = "0" + seconds;
+    };
+    if (minutes <= 9) {
+        minutes = "0" + minutes;
+    };
+    if (hours <= 9) {
+        hours = "0" + hours;
+    }
+    // if (milliseconds <= 999) {
+    //     milliseconds = "0" + milliseconds
+    // }
+    document.getElementById("time_now").innerHTML = hours + ":"+ minutes + ":" + seconds + "." + milliseconds;
+    // if (distance < 0) {
+    //     clearInterval(x);
+    //     document.getElementById("time_councils").innerHTML = "EXPIRED";
+    // };
+}, 1);
+
 var time_councils = new Date("June 17, 2022 08:25:00").getTime();
-var r1 = Math.random()*255;
-var r2 = Math.random()*255;
-var r3 = Math.random()*255;
 var x = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_councils - now;
@@ -35,10 +64,8 @@ var x = setInterval(() => {
         document.getElementById("time_councils").innerHTML = "EXPIRED";
     };
 }, 1);
+
 var time_summer_fest = new Date("June 18, 2022 11:00:00").getTime();
-var r1 = Math.random()*255;
-var r2 = Math.random()*255;
-var r3 = Math.random()*255;
 var x = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_summer_fest - now;
@@ -74,9 +101,6 @@ var x = setInterval(() => {
 }, 1);
 
 var time_school = new Date("July 1, 2022 11:00:00").getTime();
-var r1 = Math.random()*255;
-var r2 = Math.random()*255;
-var r3 = Math.random()*255;
 var x = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_school - now;
@@ -147,9 +171,6 @@ var x = setInterval(() => {
 }, 1);
 
 var time_school_start = new Date("September 2, 2022 08:05:00").getTime();
-var r1 = Math.random()*255;
-var r2 = Math.random()*255;
-var r3 = Math.random()*255;
 var x = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_school_start - now;
@@ -213,7 +234,9 @@ function changeColor() {
     }
 }
 
-
+var r1 = Math.random()*255;
+var r2 = Math.random()*255;
+var r3 = Math.random()*255;
 setInterval(changeColor, 50);
 
 var stop = true;
