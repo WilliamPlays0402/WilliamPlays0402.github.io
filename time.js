@@ -1,33 +1,12 @@
 var x = setInterval(() => {
-    var now = new Date().getTime();
-    var hours = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((now % (1000 * 60)) / 1000);
-    var milliseconds = Math.floor((now % 1000));
-    if (milliseconds <= 9) {
-        milliseconds = "00" + milliseconds;
-    } else if (milliseconds <= 99) {
+    let milliseconds = new Date().getMilliseconds();
+    if (milliseconds < 10) {
         milliseconds = "0" + milliseconds;
-    } else if (milliseconds == 1000) {
-        milliseconds = 999;
-    };
-    if (seconds <= 9) {
-        seconds = "0" + seconds;
-    };
-    if (minutes <= 9) {
-        minutes = "0" + minutes;
-    };
-    if (hours <= 9) {
-        hours = "0" + hours;
     }
-    // if (milliseconds <= 999) {
-    //     milliseconds = "0" + milliseconds
-    // }
-    document.getElementById("time_now").innerHTML = hours + ":"+ minutes + ":" + seconds + "." + milliseconds;
-    // if (distance < 0) {
-    //     clearInterval(x);
-    //     document.getElementById("time_councils").innerHTML = "EXPIRED";
-    // };
+    if (milliseconds < 100) {
+        milliseconds = "0" + milliseconds;
+    }
+    document.getElementById('time_now').innerHTML = new Date().toLocaleString() + '.' + milliseconds;
 }, 1);
 
 var time_councils = new Date("June 17, 2022 08:25:00").getTime();
@@ -55,9 +34,6 @@ var x = setInterval(() => {
     if (hours <= 9) {
         hours = "0" + hours;
     }
-    // if (milliseconds <= 999) {
-    //     milliseconds = "0" + milliseconds
-    // }
     document.getElementById("time_councils").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s " + milliseconds + "ms";
     if (distance < 0) {
         clearInterval(x);
@@ -90,9 +66,6 @@ var x = setInterval(() => {
     if (hours <= 9) {
         hours = "0" + hours;
     }
-    // if (milliseconds <= 999) {
-    //     milliseconds = "0" + milliseconds
-    // }
     document.getElementById("time_summer_fest").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s " + milliseconds + "ms";
     if (distance < 0) {
         clearInterval(x);
@@ -160,9 +133,6 @@ var x = setInterval(() => {
     if (hours <= 9) {
         hours = "0" + hours;
     }
-    // if (milliseconds <= 999) {
-    //     milliseconds = "0" + milliseconds
-    // }
     document.getElementById("time_activity").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s " + milliseconds + "ms";
     if (distance < 0) {
         clearInterval(x);
@@ -195,9 +165,6 @@ var x = setInterval(() => {
     if (hours <= 9) {
         hours = "0" + hours;
     }
-    // if (milliseconds <= 999) {
-    //     milliseconds = "0" + milliseconds
-    // }
     document.getElementById("time_school_start").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s " + milliseconds + "ms";
     if (distance < 0) {
         clearInterval(x);
