@@ -141,7 +141,7 @@ var x = setInterval(() => {
 }, 1);
 
 var time_school_start = new Date("September 2, 2022 08:05:00").getTime();
-var x = setInterval(() => {
+var x_start = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_school_start - now;
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -167,7 +167,7 @@ var x = setInterval(() => {
     }
     document.getElementById("time_school_start").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s " + milliseconds + "ms";
     if (distance < 0) {
-        clearInterval(x);
+        clearInterval(x_start);
         document.getElementById("time_school_start").innerHTML = "EXPIRED";
     };
 }, 1);
