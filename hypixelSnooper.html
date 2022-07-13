@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- 
+    This is a project for a hypixel snooper
+    This project gets information for players via the hypixel api and displays information of up to 4 players.
+    This project is made by:
+        -William Plays0402
+ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Creators Project Mods & info</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./index.js" defer></script>
+    <!-- add favicon -->
+    <link rel="icon" href="./favicon.ico">
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="text">
+        <!-- input field for api key -->
+        <div class="input-field">
+            <label for="api-key">API Key</label>
+            <input type="text" id="api-key" placeholder="Enter your api key" autocomplete="off" data-lpignore="true" data-form-type="other">
+        </div>
+        <!-- input field for player 1 -->
+        <div class="input-field">
+            <!-- <label for="player-1">Player 1 Username</label> -->
+            <input type="text" id="player-1" placeholder="Player 1 Username" autocomplete="off" data-lpignore="true" data-form-type="other">
+        </div>
+        <div id="player-1-data"></div>
+        <!-- input field for player 2 -->
+        <div class="input-field">
+            <!-- <label for="player-2">Player 2 Username</label> -->
+            <input type="text" id="player-2" placeholder="Player 2 Username" autocomplete="off" data-lpignore="true" data-form-type="other">
+        </div>
+        <div id="player-2-data"></div>
+        <!-- input field for player 3 -->
+        <div class="input-field">
+            <!-- <label for="player-3">Player 3 Username</label> -->
+            <input type="text" id="player-3" placeholder="Player 3 Username"autocomplete="off" data-lpignore="true" data-form-type="other">
+        </div>
+        <div id="player-3-data"></div>
+        <!-- input field for player 4 -->
+        <div class="input-field">
+            <!-- <label for="player-4">Player 4 Username</label> -->
+            <input type="text" id="player-4" placeholder="Player 4 Username" autocomplete="off" data-lpignore="true" data-form-type="other">
+        </div>
+        <div id="player-4-data"></div>
+        <button id="start">Start</button>
+        <div id="updateTime"></div>
+    </div>
+</body>
+</html>
