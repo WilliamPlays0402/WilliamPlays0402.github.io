@@ -88,7 +88,7 @@ function updateTime() {
     } else {
         document.getElementsByClassName("text")[0].style.borderColor = "#f1f1f1";
     }
-    document.getElementById("updateTime").innerHTML = `Time until next update: ${timeUntil + 1} seconds.`;
+    // document.getElementById("updateTime").innerHTML = `Time until next update: ${timeUntil + 1} seconds.`;
 }
 
 // make a function that run the function getData and display the result in a div with id "blocksBroken"
