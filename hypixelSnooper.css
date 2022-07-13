@@ -1,0 +1,105 @@
+:root {
+  background-color: #b744f0;
+  font-family: 'Calibri Light', sans-serif;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+.text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 5px solid #f1f1f1;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  transition: all 2s ease-in-out;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+.bg-image {
+  /* The image used */
+  background-image: url("./image.png");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+  width: 100%;
+  scale: 110%;
+  transform: scale(1.1);
+  position: fixed;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body, html {
+  height: 100%;
+  overflow: hidden;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.5em;
+  font-family: 'Calibri Light', sans-serif;
+  color: white;
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 80%;
+  border-radius: 5px;
+  border: 3px solid #f1f1f1;
+  transition: all 0.3s ease-in-out;
+}
+
+input:active, input:focus {
+  border: 3px solid #e91e63;
+  transform: scale(1.1);
+}
+
+input:hover {
+  border: 3px solid #e91e63;
+}
+
+button {
+  outline: none;
+  background: #00ff9922;
+  font-size: 1.5em;
+  font-family: 'Calibri Light', sans-serif;
+  color: white;
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 80%;
+  border-radius: 5px;
+  border: 3px solid #f1f1f1;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background: #00ff99;
+  color: black;
+  transform: scale(1.1);
+}
