@@ -50,9 +50,9 @@ async function getData(playerName, key, storedUUID) {
 }
 
 async function getUUID(playerName) {
-    let response = await fetch(`/api/username?username=${playerName}`);
+    let response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${playerName}`);
     let res = await response.json();
-    return res.uuid;
+    return res.id;
     
 }
 
