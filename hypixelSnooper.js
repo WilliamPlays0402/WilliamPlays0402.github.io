@@ -63,8 +63,8 @@ document.getElementById("start").addEventListener("click", async () => {
     document.getElementById("start").style.bottom = "100px";
     update();
     updateTime();
-    setInterval(update, 2000);
-    setInterval(updateTime, 1000);
+    setInterval(update, 4000);
+    setInterval(updateTime, 2000);
     await sleep(300);
     document.getElementById("start").style.display = "none";
 });
@@ -74,7 +74,7 @@ function updateTime() {
     let timeUntil = time
     timeUntil = timeUntil - 2;
     timeUntil = timeUntil * -1;
-    if (timeUntil <= 0) {
+    if (timeUntil <= 1) {
         timeUntil = 0;
         time = 0;
         // make it so that the border of the element with class "text" has an animation
