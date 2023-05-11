@@ -12,7 +12,7 @@ var x = setInterval(() => {
 var time_holiday = new Date("June 12, 2023 14:25:00").getTime();
 var x = setInterval(() => {
     var now = new Date().getTime();
-    var distance = time_councils - now;
+    var distance = time_holiday - now;
      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -34,10 +34,10 @@ var x = setInterval(() => {
      if (hours <= 9) {
          hours = "0" + hours;
      }
-     document.getElementById("time_holidays").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s " + milliseconds + "ms";
+     document.getElementById("time_holiday").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s " + milliseconds + "ms";
      if (distance < 0) {
          clearInterval(x);
-         document.getElementById("time_holidays").innerHTML = "EXPIRED";
+         document.getElementById("time_holiday").innerHTML = "EXPIRED";
      };
 }, 1);
 
