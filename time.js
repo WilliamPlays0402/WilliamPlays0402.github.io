@@ -9,7 +9,7 @@ var x = setInterval(() => {
     document.getElementById('time_now').innerHTML = new Date().toLocaleString() + '.' + milliseconds;
 }, 1);
 
-var time_holiday = new Date("June 12, 2023 14:25:00").getTime();
+var time_holiday = new Date("May 12, 2023 14:25:00").getTime();
 var x = setInterval(() => {
     var now = new Date().getTime();
     var distance = time_holiday - now;
