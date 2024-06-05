@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plinko Board</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+
+        #plinko-board {
+            position: relative;
+            width: 680px;
+            height: 800px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #score-container {
+            text-align: center;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-bottom: 2px solid #ddd;
+        }
+
+        #score {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #drop-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #pins {
+            position: relative;
+            width: 100%;
+            height: 70%;
+            overflow: hidden;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .pin {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            border-radius: 50%;
+        }
+
+        #holes {
+            position: relative;
+            width: 100%;
+            height: 10%;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+
+        .hole {
+            width: 5%;
+            height: 30px;
+            margin: 0 1px;
+            text-align: center;
+            color: #fff;
+            line-height: 30px;
+        }
+
+        .puck {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        button:active {
+            background-color: #0056b3;
+            border-radius: 15px;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="plinko-board">
+        <div id="score-container">
+            <div id="score">Score: 1000</div>
+            <button id="drop-button">Drop Puck (-100)</button>
+        </div>
+        <div id="pins"></div>
+        <div id="holes"></div>
+    </div>
+    <script>
+        const plinkoBoard = document.getElementById('plinko-board');
+        const scoreElement = document.getElementById('score');
+        const dropButton = document.getElementById('drop-button');
+        const pinsContainer = document.getElementById('pins');
+        const holesContainer = document.getElementById('holes');
+        const hitsrc = "https://cdn.uppbeat.io/audio-files/13a6d3c9e914de5ab3fb451786993718/68b41f1a7a0e6ef715793916306f05b3/39f049e8881b1992d00e031edc232420/STREAMING-boing-light-bounce-smartsound-fx-1-00-00.mp3"
+        const hitSfx = [];
+        for (let i = 0; i < 50; i++) {
+            hitSfx.push(new Audio(hitsrc));
+            hitSfx[i].playbackRate = 1+ Math.random() * 0.2 - 0.1;
+            hitSfx[i].preservesPitch = false;
+        }
+        const pickupsrc = 'https://cdn.uppbeat.io/audio-files/8a0ead3ea7dbf25377a13251625e6d3d/03eee3c9610b05e3ba254e8d289bb583/caeaea73bf46ab32d888868123c0c76e/STREAMING-arcade-game-pick-up-item-epic-stock-media-1-00-00.mp3'
+        const pickupSfx = [];
+        for (let i = 0; i < 50; i++) {
+            pickupSfx.push(new Audio(pickupsrc));
+            pickupSfx[i].preservesPitch = false;
+        }
+
+        let score = 1000;
+        const pinRows = 13;
+        const holeCount = 20;
+
+        // Create pins in a triangular pattern
+        for (let row = 3; row < pinRows; row++) {
+            for (let col = 0; col <= row; col++) {
+                const pin = document.createElement('div');
+                pin.classList.add('pin');
+                pin.style.top = `${row * 50 + -100}px`;
+                pin.style.left = `${col * 50 + (720 - (row + 1) * 50) / 2}px`;
+                pinsContainer.appendChild(pin);
+            }
+        }
+
+        // Create holes
+        const holeMultipliers = [];
+        const centerIndex = Math.floor(holeCount / 2);
+
+        for (let i = 0; i < holeCount; i++) {
+            const distanceFromCenter = Math.abs(i - centerIndex);
+            const multiplier = Math.round((0.1 + 0.2 * distanceFromCenter)*10)/10;
+            holeMultipliers.push(multiplier);
+        }
+
+        holeMultipliers.forEach((multiplier, index) => {
+            const hole = document.createElement('div');
+            hole.classList.add('hole');
+            hole.dataset.multiplier = multiplier.toFixed(1);
+            hole.textContent = `${multiplier.toFixed(1)}x`;
+            const colorIntensity = Math.min(255, Math.floor(multiplier * 127));
+            hole.style.backgroundColor = `rgb(${colorIntensity}, 0, 0)`;
+            holesContainer.appendChild(hole);
+        });
+
+        // Drop puck
+        dropButton.addEventListener('click', () => {
+            if (score >= 100) {
+                score -= 100;
+                dropPuck();
+                updateScore();
+                showRemovedScore(100);
+            }
+        });
+
+        function updateScore() {
+            scoreElement.textContent = `Score: ${score}`;
+            if (score < 100) {
+                dropButton.disabled = true;
+            } else {
+                dropButton.disabled = false;
+            }
+            // if the score is less than 100 and there are no pucks, then say game over
+            if (score < 100 && document.querySelector('.puck') === null) {
+                const gameOver = document.createElement('div');
+                gameOver.textContent = 'Game Over';
+                gameOver.style.position = 'absolute';
+                gameOver.style.fontSize = '48px';
+                gameOver.style.color = 'red';
+                // make it over everything, and dim the background
+                gameOver.style.zIndex = '1000';
+                gameOver.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                gameOver.style.padding = '20px';
+                gameOver.style.borderRadius = '10px';
+                gameOver.style.textAlign = 'center';
+                // and cover everything
+                gameOver.style.position = 'fixed';
+                gameOver.style.width = '100%';
+                gameOver.style.height = '100%';
+                gameOver.style.top = '0';
+                gameOver.style.left = '0';
+                gameOver.style.display = 'flex';
+                gameOver.style.justifyContent = 'center';
+                gameOver.style.alignItems = 'center';
+                gameOver.style.pointerEvents = 'none';
+                document.body.appendChild(gameOver);
+            }
+        }
+
+        function dropPuck() {
+            const puck = document.createElement('div');
+            puck.classList.add('puck');
+            puck.style.left = `${plinkoBoard.clientWidth / 2 - 7.5 + Math.random()*5-2.5}px`;
+            plinkoBoard.appendChild(puck);
+
+            let x = parseInt(puck.style.left);
+            // get top of the play board area
+            let y = holesContainer.clientHeight;
+            let velocityX = 0;
+            let velocityY = 0;
+            const gravity = 0.2;
+
+            const interval = setInterval(() => {
+                velocityY += gravity;
+                x += velocityX;
+                y += velocityY;
+                puck.style.top = `${y}px`;
+                puck.style.left = `${x}px`;
+
+                const pins = document.querySelectorAll('.pin');
+                pins.forEach(pin => {
+                    const pinRect = pin.getBoundingClientRect();
+                    const puckRect = puck.getBoundingClientRect();
+                    const dx = puckRect.left - pinRect.left;
+                    const dy = puckRect.top - pinRect.top;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 10) {
+                        // Normal vector
+                        const nx = dx / distance;
+                        const ny = dy / distance;
+
+                        // Relative velocity
+                        const relativeVelocityX = velocityX;
+                        const relativeVelocityY = velocityY;
+
+                        // Dot product of relative velocity and normal vector
+                        const dotProduct = relativeVelocityX * nx + relativeVelocityY * ny;
+
+                        // Reflect velocity
+                        velocityX -= 2 * dotProduct * nx;
+                        velocityY -= 2 * dotProduct * ny;
+
+                        // Add a bit of random variation
+                        // velocityX += Math.random() * 1 - 0.5;
+                        // velocityY += Math.random() * 1 - 0.5;
+
+                        // make it so its less likely to go towards the edges (more likely to go towards the center)
+                        let deviationFromCenter = Math.abs((pinRect.left + pinRect.width / 2) - (puckRect.left + puckRect.width / 2));
+                        let deviationMultiplier = 1 - deviationFromCenter / (plinkoBoard.clientWidth / 2);
+                        velocityX += Math.random() * 1 - 0.5 * deviationMultiplier;
+
+                        // Add a bit of friction
+                        velocityX *= 0.7;
+                        velocityY *= 0.4;
+
+                        // Move puck out of collision
+                        x += nx * 5;
+                        y += ny * 5;
+
+                        // Play hit sound
+                        // play the next sound in the array and set the volume to be dependent on the velocity of the puck
+                        let currentHitSfx = hitSfx.shift();
+                        hitSfx.push(currentHitSfx);
+                        currentHitSfx.volume = Math.min(1, Math.abs(velocityX) + Math.abs(velocityY) / 10);
+                        currentHitSfx.play();
+                        // add it back to the end
+                    }
+                });
+
+                // Side collision
+                if (x <= 0 || x >= plinkoBoard.clientWidth - puck.clientWidth) {
+                    velocityX = -velocityX;
+                }
+
+                // Bottom collision with holes
+                if (y >= plinkoBoard.clientHeight - holesContainer.clientHeight - puck.clientHeight) {
+                    clearInterval(interval);
+                    const holeIndex = Math.floor((parseInt(puck.style.left) / plinkoBoard.clientWidth) * holeCount);
+                    const multiplier = parseFloat(holesContainer.children[holeIndex].dataset.multiplier);
+                    score += Math.round(100 * multiplier);
+                    showAddedScore(100 * multiplier);
+                    plinkoBoard.removeChild(puck);
+                    updateScore();
+                    // Play pickup sound
+                    let currentPickupSfx = pickupSfx.shift();
+                    pickupSfx.push(currentPickupSfx);
+                    // for multipliers under 1, do a lower pitch
+                    // and for multipliers over 1, do a higher pitch
+                    // and base it on the multiplier
+                    currentPickupSfx.playbackRate = 1 + (multiplier - 1) * 0.2;
+                    currentPickupSfx.play();
+                }
+            }, 20);
+        }
+        function showAddedScore(score) {
+            const addedScore = document.createElement('div');
+            addedScore.textContent = `+${Math.round(score)}`;
+            addedScore.style.position = 'absolute';
+            addedScore.style.top = '50%';
+            addedScore.style.left = '20%';
+            addedScore.style.fontSize = '24px';
+            addedScore.style.color = 'green';
+            document.body.appendChild(addedScore);
+            addedScore.animate([
+                { transform: 'scale(1)', opacity: 1, top: '50%' },
+                { transform: 'scale(2)', opacity: 0, top: '0%' }
+            ], {
+                duration: 1000,
+                fill: 'forwards'
+            });
+            setTimeout(() => {
+                document.body.removeChild(addedScore);
+            }, 1000);
+        }
+
+        function showRemovedScore(score) {
+            const removedScore = document.createElement('div');
+            removedScore.textContent = `-${score}`;
+            removedScore.style.position = 'absolute';
+            removedScore.style.top = '50%';
+            removedScore.style.right = '20%';
+            removedScore.style.fontSize = '24px';
+            removedScore.style.color = 'red';
+            document.body.appendChild(removedScore);
+            removedScore.animate([
+                { transform: 'scale(2)', opacity: 1, top: '0%' },
+                { transform: 'scale(1)', opacity: 0, top: '50%' }
+            ], {
+                duration: 1000,
+                fill: 'forwards'
+            });
+            setTimeout(() => {
+                document.body.removeChild(removedScore);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
