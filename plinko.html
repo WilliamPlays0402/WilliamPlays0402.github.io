@@ -267,9 +267,9 @@
                         // velocityY += Math.random() * 1 - 0.5;
 
                         // make it so its less likely to go towards the edges (more likely to go towards the center)
-                        let deviationFromCenter = Math.abs((pinRect.left + pinRect.width / 2) - (puckRect.left + puckRect.width / 2));
-                        let deviationMultiplier = 1 - deviationFromCenter / (plinkoBoard.clientWidth / 2);
-                        velocityX += Math.random() * 1 - 0.5 * deviationMultiplier;
+                        // let deviationFromCenter = Math.abs((pinRect.left + pinRect.width / 2) - (puckRect.left + puckRect.width / 2));
+                        // let deviationMultiplier = 1 - deviationFromCenter / (plinkoBoard.clientWidth / 2);
+                        // velocityX += Math.random() * 1 - 0.5 * deviationMultiplier;
 
                         // Add a bit of friction
                         velocityX *= 0.4;
